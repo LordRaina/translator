@@ -7,9 +7,14 @@ exports.translate = function(req, res) {
   const source = req.query.source;
   const target = req.query.target;
   if (text && source && target) {
-    axios.get(`${api}/get?q=${text}&langpair=${source}|${target}`)
+    axios.get(`${api}/get?q=${encodeURI(text)}&langpair=${source}|${target}`)
       .then(response => {
-        res.json({translatedText: response.data.responseData.translatedText});
+        console.log(response);
+        if (response.data.responseStatus == 200) {
+          res.json({translatedText: response.data.responseData.translatedText});
+        } else {
+          res.status(400).send();
+        }
       })
       .catch(error => {
         res.send(error);
