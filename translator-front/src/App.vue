@@ -11,7 +11,7 @@
     </v-app-bar>
 
     <v-main>
-      <translate-form @translate="translate"/>
+      <translate-form/>
     </v-main>
   </v-app>
 </template>
@@ -28,10 +28,5 @@ export default {
   data: () => ({
     //
   }),
-  methods: {
-    translate(text) {
-      console.log(text)
-    }
-  }
 };
 </script>
