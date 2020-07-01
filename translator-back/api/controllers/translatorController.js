@@ -9,7 +9,6 @@ exports.translate = function(req, res) {
   if (text && source && target) {
     axios.get(`${api}/get?q=${encodeURI(text)}&langpair=${source}|${target}`)
       .then(response => {
-        console.log(response);
         if (response.data.responseStatus == 200) {
           res.json({translatedText: response.data.responseData.translatedText});
         } else {
@@ -17,6 +16,7 @@ exports.translate = function(req, res) {
         }
       })
       .catch(error => {
+        console.log(error);
         res.send(error);
       });
   }

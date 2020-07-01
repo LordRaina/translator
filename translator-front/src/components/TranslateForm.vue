@@ -2,7 +2,8 @@
   <v-container>
     <v-row justify="center">
       <div id="translator">
-        <h3>Please write the text you wish to translate</h3>
+        <h3>Please write or upload the text you wish to translate</h3>
+        <file-reader @load="textToTranslate = $event"/>
         <div id="language-selection">
           from
           <v-autocomplete class="lang-select" placeholder="source language"
@@ -34,9 +35,13 @@
 <script>
   import myApi from '../api/api.js';
   import langCsv from '../assets/language_codes_csv.csv';
+  import FileReader from './FileReader';
 
   export default {
     name: 'translator-form',
+    components: {
+      FileReader
+    },
     data() {
       return {
         textToTranslate: '',
